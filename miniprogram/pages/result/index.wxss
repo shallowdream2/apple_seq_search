@@ -1,0 +1,190 @@
+/**result.wxss**/
+.page {
+  min-height: 100vh;
+  padding: 24rpx 32rpx 80rpx;
+}
+
+/* 产品卡片 */
+.product-card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 48rpx 36rpx 40rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+.product-icon-wrap {
+  margin-bottom: 20rpx;
+}
+
+.product-icon {
+  font-size: 80rpx;
+}
+
+.product-name {
+  display: block;
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 16rpx;
+}
+
+.serial-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  margin-bottom: 24rpx;
+}
+
+.serial-text {
+  font-size: 28rpx;
+  color: #6e6e73;
+  letter-spacing: 2rpx;
+  font-family: 'SF Mono', 'Menlo', monospace;
+}
+
+.copy-hint {
+  font-size: 20rpx;
+  color: #0071e3;
+}
+
+.tag-row {
+  display: flex;
+  justify-content: center;
+  gap: 16rpx;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6rpx 24rpx;
+  background: #f0f0f5;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  color: #6e6e73;
+}
+
+.tag-warn {
+  background: #fff3cd;
+  color: #cc8800;
+}
+
+/* 通知 */
+.notice-card {
+  background: #fff8e1;
+  border-radius: 16rpx;
+  padding: 24rpx 28rpx;
+  margin-top: 24rpx;
+  border-left: 6rpx solid #ffb300;
+}
+
+.notice-text {
+  font-size: 24rpx;
+  color: #8d6e00;
+  line-height: 1.7;
+}
+
+/* 详情卡片 */
+.detail-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 12rpx 0;
+  margin-top: 24rpx;
+  box-shadow: 0 2rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx 36rpx;
+  border-bottom: 1rpx solid #f5f5f7;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 28rpx;
+  color: #86868b;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  font-size: 28rpx;
+  color: #1d1d1f;
+  font-weight: 500;
+  text-align: right;
+  margin-left: 20rpx;
+}
+
+.text-ok {
+  color: #34c759;
+}
+
+.text-warn {
+  color: #ff9500;
+}
+
+/* 操作按钮 */
+.action-section {
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.btn-primary {
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #0071e3;
+  color: #ffffff;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.btn-primary:active {
+  background: #0077ed;
+}
+
+.btn-secondary {
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #ffffff;
+  color: #0071e3;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.btn-secondary:active {
+  background: #f5f5f7;
+}
+
+/* 错误 */
+.error-card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 80rpx 40rpx;
+  text-align: center;
+  margin-top: 80rpx;
+  box-shadow: 0 2rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+.error-icon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: 24rpx;
+}
+
+.error-text {
+  display: block;
+  font-size: 30rpx;
+  color: #6e6e73;
+  margin-bottom: 40rpx;
+}

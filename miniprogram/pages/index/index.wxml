@@ -1,29 +1,85 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="title">快速了解云开发</view>
-  <view class="top_tip">免鉴权接口调用 免部署后台 高并发</view>
-  <view class="power" wx:key="title" wx:for="{{powerList}}" wx:for-item="power">
-    <view class="power_info" data-index="{{index}}" data-type="{{ power.type }}" bindtap="onClickPowerInfo">
-      <view class="power_info_text">
-        <view class="power_info_text_title">
-          {{power.title}}
-          <view class="power_info_text_tag" wx:if="{{power.tag}}">{{power.tag}}</view>
-        </view>
-        <view class="power_info_text_tip">{{power.tip}}</view>
-      </view>
-      <image wx:if="{{!power.showItem && power.item.length}}" class="power_info_more" src="../../images/arrow.svg"></image>
-      <image wx:if="{{power.showItem && power.item.length}}" class="power_info_less" src="../../images/arrow.svg"></image>
-      <image wx:if="{{!power.item.length}}" class="power_item_icon" src="../../images/arrow.svg"></image>
+<view class="page">
+  <!-- 头部 -->
+  <view class="header">
+    <text class="header-title">序列号查询</text>
+    <text class="header-subtitle">输入 Apple 产品序列号，查询设备信息</text>
+  </view>
+
+  <!-- 搜索区域 -->
+  <view class="search-card">
+    <view class="search-input-wrap">
+      <image class="search-icon" src="/images/search.svg" />
+      <input
+        class="search-input"
+        placeholder="输入序列号，如 C02X1234ABCD"
+        placeholder-class="search-placeholder"
+        value="{{serialInput}}"
+        bindinput="onInput"
+        bindconfirm="onSearch"
+        maxlength="20"
+        adjust-position="{{true}}"
+      />
+      <image
+        wx:if="{{serialInput}}"
+        class="clear-icon"
+        src="/images/close.svg"
+        bindtap="onClearInput"
+      />
     </view>
-    <view wx:if="{{power.showItem}}">
-      <view wx:key="title" wx:for="{{power.item}}">
-        <view class="line"></view>
-        <view class="power_item" bindtap="jumpPage" data-type="{{ item.type }}" data-page="{{item.page}}">
-          <view class="power_item_title">{{item.title}}</view>
-          <image class="power_item_icon" src="../../images/arrow.svg"></image>
+    <view class="search-actions">
+      <view class="btn-paste" bindtap="onPaste">粘贴</view>
+      <view class="btn-search" bindtap="onSearch">查询</view>
+    </view>
+  </view>
+
+  <!-- 提示 -->
+  <view class="tip-card">
+    <text class="tip-title">如何查找序列号？</text>
+    <view class="tip-list">
+      <text class="tip-item">· iPhone/iPad：设置 → 通用 → 关于本机</text>
+      <text class="tip-item">· Mac：左上角  菜单 → 关于本机</text>
+      <text class="tip-item">· Apple Watch：iPhone Watch App → 通用 → 关于</text>
+      <text class="tip-item">· AirPods：iPhone 设置 → 蓝牙 → 点击 ⓘ</text>
+    </view>
+  </view>
+
+  <!-- 搜索历史 -->
+  <view class="history-section" wx:if="{{history.length > 0}}">
+    <view class="history-header">
+      <text class="history-title">搜索历史</text>
+      <text class="history-clear" bindtap="onClearHistory">清空</text>
+    </view>
+    <view class="history-list">
+      <view
+        class="history-item"
+        wx:for="{{history}}"
+        wx:key="serial"
+        bindtap="onTapHistory"
+        data-serial="{{item.serial}}"
+      >
+        <view class="history-item-info">
+          <text class="history-serial">{{item.serial}}</text>
+          <text class="history-model">{{item.model}}</text>
         </view>
+        <view
+          class="history-delete"
+          catchtap="onDeleteHistory"
+          data-serial="{{item.serial}}"
+        >×</view>
       </view>
     </view>
   </view>
-  <cloud-tip-modal showTipProps="{{showTip}}" title="{{title}}" content="{{content}}"></cloud-tip-modal>
+
+  <!-- 清空确认弹窗 -->
+  <view class="modal-mask" wx:if="{{showClearConfirm}}" bindtap="onCancelClear">
+    <view class="modal-dialog" catchtap>
+      <text class="modal-title">确认清空</text>
+      <text class="modal-content">确定要清空所有搜索历史吗？</text>
+      <view class="modal-buttons">
+        <view class="modal-btn modal-btn-cancel" bindtap="onCancelClear">取消</view>
+        <view class="modal-btn modal-btn-confirm" bindtap="onConfirmClear">清空</view>
+      </view>
+    </view>
+  </view>
 </view>

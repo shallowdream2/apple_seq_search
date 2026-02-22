@@ -1,0 +1,64 @@
+<!--result.wxml-->
+<view class="page">
+  <block wx:if="{{result && result.success}}">
+    <!-- 产品卡片 -->
+    <view class="product-card">
+      <view class="product-icon-wrap">
+        <text class="product-icon">{{result.icon === 'iphone' ? '📱' : result.icon === 'ipad' ? '📱' : result.icon === 'macbook' || result.icon === 'imac' || result.icon === 'mac' ? '💻' : result.icon === 'watch' ? '⌚' : result.icon === 'airpods' ? '🎧' : '🍎'}}</text>
+      </view>
+      <text class="product-name">{{result.model}}</text>
+      <view class="serial-row" bindtap="onCopySerial">
+        <text class="serial-text">{{result.serial}}</text>
+        <text class="copy-hint">点击复制</text>
+      </view>
+      <view class="tag-row">
+        <view class="tag">{{result.type}}</view>
+        <view class="tag tag-warn" wx:if="{{result.refurbished}}">翻新机</view>
+      </view>
+    </view>
+
+    <!-- 通知 -->
+    <view class="notice-card" wx:if="{{result.notice}}">
+      <text class="notice-text">{{result.notice}}</text>
+    </view>
+
+    <!-- 详情列表 -->
+    <view class="detail-card">
+      <view class="detail-item">
+        <text class="detail-label">产品型号</text>
+        <text class="detail-value">{{result.model}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">生产日期</text>
+        <text class="detail-value">{{result.date.text}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">生产地点</text>
+        <text class="detail-value">{{result.factory}}</text>
+      </view>
+      <view class="detail-item" wx:if="{{result.uniqueId && result.uniqueId !== '-'}}">
+        <text class="detail-label">唯一标识码</text>
+        <text class="detail-value">{{result.uniqueId}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">是否翻新</text>
+        <text class="detail-value {{result.refurbished ? 'text-warn' : 'text-ok'}}">{{result.refurbished ? '是（翻新机）' : '否（全新机）'}}</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-section">
+      <view class="btn-primary" bindtap="onCheckCoverage">前往 Apple 官方查询保修</view>
+      <view class="btn-secondary" bindtap="onBackSearch">返回查询</view>
+    </view>
+  </block>
+
+  <!-- 查询失败 -->
+  <block wx:if="{{result && !result.success}}">
+    <view class="error-card">
+      <text class="error-icon">⚠️</text>
+      <text class="error-text">{{result.error}}</text>
+      <view class="btn-secondary" bindtap="onBackSearch">返回重试</view>
+    </view>
+  </block>
+</view>
