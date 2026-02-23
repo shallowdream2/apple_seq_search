@@ -26,18 +26,10 @@ Page({
     })
   },
 
-  // 前往 Apple 官方查询
+  // 前往 Apple 官方保修查询
   onCheckCoverage() {
-    wx.setClipboardData({
-      data: this.data.serial,
-      success: () => {
-        wx.showModal({
-          title: '序列号已复制',
-          content: '请在浏览器中打开 checkcoverage.apple.com 并粘贴序列号进行官方查询。',
-          showCancel: false,
-          confirmText: '知道了',
-        })
-      },
+    wx.navigateTo({
+      url: `/pages/warranty/index?serial=${this.data.serial}`,
     })
   },
 
